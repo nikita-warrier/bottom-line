@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Teachers", sans-serif;
     margin: 40px;
     text-align: center;
 }

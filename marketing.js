@@ -1,38 +1,46 @@
-const addPlatformBtn = document.getElementById("add-platform");
-const platformList = document.getElementById("platform-list");
+document.addEventListener("DOMContentLoaded", function () {
+    const addPlatformBtn = document.getElementById("add-platform");
+    const platformList = document.getElementById("platform-list");
 
-addPlatformBtn.addEventListener("click", function () {
+    if (!addPlatformBtn || !platformList) {
+        return;
+    }
 
-    const platformCard = document.createElement("div");
-    platformCard.className = "platform-card";
+    addPlatformBtn.addEventListener("click", function () {
+        const platformCard = createPlatformCard();
+        platformList.appendChild(platformCard);
+    });
 
-    platformCard.innerHTML = `
-        <div class="platform-header">
+    function createPlatformCard() {
+        const platformCard = document.createElement("div");
+        platformCard.className = "platform-card";
 
-            <input type="text" placeholder="Platform Name">
+        platformCard.innerHTML = `
+            <div class="platform-header">
+                <input type="text" placeholder="Platform Name">
+                <input type="text" placeholder="Followers">
+            </div>
+            <div class="tasks"></div>
+            <button class="add-task">+ Add Task</button>
+        `;
 
-            <input type="text" placeholder="Followers">
+        const addTaskBtn = platformCard.querySelector(".add-task");
+        const tasks = platformCard.querySelector(".tasks");
 
-        </div>
+        addTaskBtn.addEventListener("click", function () {
+            const task = createTask();
+            tasks.appendChild(task);
+        });
 
-        <div class="tasks"></div>
+        return platformCard;
+    }
 
-        <button class="add-task">+ Add Task</button>
-    `;
-
-    platformList.appendChild(platformCard);
-
-    const addTaskBtn = platformCard.querySelector(".add-task");
-    const tasks = platformCard.querySelector(".tasks");
-
-    addTaskBtn.addEventListener("click", function () {
-
+    function createTask() {
         const task = document.createElement("div");
         task.className = "task";
 
         task.innerHTML = `
             <input type="text" placeholder="Task Name">
-
             <select>
                 <option>Not Started</option>
                 <option>In Progress</option>
@@ -40,8 +48,22 @@ addPlatformBtn.addEventListener("click", function () {
             </select>
         `;
 
-        tasks.appendChild(task);
+        const statusSelect = task.querySelector("select");
+        updateTaskColor(task, statusSelect.value);
 
-    });
+        statusSelect.addEventListener("change", function () {
+            updateTaskColor(task, statusSelect.value);
+        });
 
+        return task;
+    }
+
+    function updateTaskColor(task, status) {
+        const colors = {
+            "Not Started": "#ffb8ca",
+            "In Progress": "#fff1b8",
+            "Ready to Post": "#c1fdd3"
+        };
+        task.style.backgroundColor = colors[status] || "transparent";
+    }
 });

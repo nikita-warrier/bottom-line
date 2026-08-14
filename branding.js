@@ -18,17 +18,17 @@ chatForm.addEventListener("submit", async function (event) {
     }
 
 
-    // Show user's message
+    // show user's message
 
     addMessage(message, "user");
 
 
-    // Clear input
+    // clear input
 
     chatInput.value = "";
 
 
-    // Show loading message
+    // show loading message
 
     const loadingMessage =
         addMessage("Thinking...", "ai");
@@ -67,12 +67,11 @@ chatForm.addEventListener("submit", async function (event) {
             await response.json();
 
 
-        // Remove "Thinking..."
 
         loadingMessage.remove();
 
 
-        // Add Gemini's response
+        // add gemini's response
 
         addMessage(
             data.message,
@@ -80,7 +79,7 @@ chatForm.addEventListener("submit", async function (event) {
         );
 
 
-        // Update branding fields
+        // update branding fields
 
         updateBrandingFields(
             data.updates
@@ -101,7 +100,7 @@ chatForm.addEventListener("submit", async function (event) {
 
 
 /* =========================================
-   UPDATE BRANDING FIELDS
+   update branding fields
 ========================================= */
 
 function updateBrandingFields(updates) {
@@ -109,9 +108,6 @@ function updateBrandingFields(updates) {
     if (!updates) {
         return;
     }
-
-
-    // Company Name
 
     if (updates.companyName) {
 
@@ -121,9 +117,6 @@ function updateBrandingFields(updates) {
 
     }
 
-
-    // Mission
-
     if (updates.mission) {
 
         document.getElementById(
@@ -132,9 +125,6 @@ function updateBrandingFields(updates) {
 
     }
 
-
-    // Vision
-
     if (updates.vision) {
 
         document.getElementById(
@@ -142,9 +132,6 @@ function updateBrandingFields(updates) {
         ).value = updates.vision;
 
     }
-
-
-    // Goals
 
     if (
         Array.isArray(updates.goals) &&
@@ -156,9 +143,6 @@ function updateBrandingFields(updates) {
         ).value = updates.goals.join("\n");
 
     }
-
-
-    // Colors
 
     if (
         Array.isArray(updates.colors) &&
@@ -185,10 +169,6 @@ function updateBrandingFields(updates) {
         );
 
     }
-
-
-    // Heading Font
-
     if (updates.headingFont) {
 
         document.getElementById(
@@ -197,9 +177,6 @@ function updateBrandingFields(updates) {
 
     }
 
-
-    // Body Font
-
     if (updates.bodyFont) {
 
         document.getElementById(
@@ -207,9 +184,6 @@ function updateBrandingFields(updates) {
         ).value = updates.bodyFont;
 
     }
-
-
-    // Miscellaneous
 
     if (updates.misc) {
 
@@ -223,7 +197,7 @@ function updateBrandingFields(updates) {
 
 
 /* =========================================
-   ADD CHAT MESSAGE
+   add message to chat
 ========================================= */
 
 function addMessage(text, type) {

@@ -1,0 +1,344 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #0a2463;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.branding-page {
+    padding: 45px;
+    background: #ffffff;
+}
+
+.branding-page h1 {
+    margin: 0 0 35px;
+    font-size: 36px;
+    color: #000000;
+}
+
+
+/* =========================
+   PAGE LAYOUT
+========================= */
+
+.branding-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(350px, 0.8fr);
+
+    gap: 35px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   BRAND INFORMATION
+========================= */
+
+.brand-info {
+    background: #ffffff;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    border: 2px solid #0a2463;
+}
+
+.form-section {
+    margin-bottom: 28px;
+}
+
+.form-section label {
+    display: block;
+
+    font-weight: 700;
+
+    margin-bottom: 9px;
+
+    color: #0a2463;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+input,
+textarea {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 2px solid #0a2463;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #0a2463;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #d8315b;
+
+    box-shadow: 0 0 0 2px rgba(216, 49, 91, 0.15);
+}
+
+textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #6b7280;
+}
+
+
+/* =========================
+   FONTS
+========================= */
+
+#headingFont,
+#bodyFont {
+    margin-bottom: 10px;
+}
+
+
+/* =========================
+   COLORS
+========================= */
+
+.color-palette {
+    display: flex;
+
+    gap: 10px;
+}
+
+.color-input {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+/* =========================
+   CHAT
+========================= */
+
+.chat-container {
+    height: 650px;
+
+    background: #ffffff;
+
+    border: 2px solid #0a2463;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    position: sticky;
+
+    top: 25px;
+}
+
+
+/* =========================
+   CHAT HEADER
+========================= */
+
+.chat-header {
+    padding: 22px;
+
+    background: #0a2463;
+
+    color: #ffffff;
+
+    border-bottom: 4px solid #3e92cc;
+}
+
+.chat-header h2 {
+    margin: 0 0 5px;
+
+    font-size: 20px;
+
+    color: #ffffff;
+}
+
+.chat-header p {
+    margin: 0;
+
+    font-size: 13px;
+
+    color: #ffffff;
+}
+
+
+/* =========================
+   CHAT MESSAGES
+========================= */
+
+.chat-messages {
+    flex: 1;
+
+    padding: 20px;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+}
+
+.message {
+    max-width: 85%;
+
+    padding: 12px 15px;
+
+    margin-bottom: 12px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* AI messages */
+
+.ai-message {
+    background: #3e92cc;
+
+    color: #ffffff;
+
+    border-radius: 12px 12px 12px 3px;
+}
+
+
+/* User messages */
+
+.user-message {
+    margin-left: auto;
+
+    background: #d8315b;
+
+    color: #ffffff;
+
+    border-radius: 12px 12px 3px 12px;
+}
+
+
+/* =========================
+   CHAT INPUT
+========================= */
+
+.chat-input {
+    display: flex;
+
+    gap: 10px;
+
+    padding: 15px;
+
+    border-top: 2px solid #0a2463;
+
+    background: #ffffff;
+}
+
+.chat-input input {
+    flex: 1;
+
+    border: 2px solid #0a2463;
+}
+
+.chat-input input:focus {
+    border-color: #d8315b;
+}
+
+.chat-input button {
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #d8315b;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+.chat-input button:hover {
+    background: #0a2463;
+}
+
+
+/* =========================
+   BRANDING SECTION HEADERS
+========================= */
+
+.form-section h2,
+.form-section h3 {
+    color: #3e92cc;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================
+   LINKS / SMALL ACCENTS
+========================= */
+
+a {
+    color: #d8315b;
+}
+
+a:hover {
+    color: #0a2463;
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+.chat-messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #3e92cc;
+
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #0a2463;
+}

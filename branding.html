@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Branding | Bottom Line</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="branding.css">
+</head>
+
+<body>
+
+    <main class="branding-page">
+
+        <h1>Branding</h1>
+
+        <div class="branding-layout">
+
+            <!-- LEFT SIDE: BRAND INFORMATION -->
+
+            <section class="brand-info">
+
+                <div class="form-section">
+                    <label for="companyName">Company Name</label>
+
+                    <input
+                        type="text"
+                        id="companyName"
+                        placeholder="Enter your company name"
+                    >
+                </div>
+
+
+                <div class="form-section">
+                    <label for="mission">Brand Mission</label>
+
+                    <textarea
+                        id="mission"
+                        placeholder="What is your company here to do?"
+                    ></textarea>
+                </div>
+
+
+                <div class="form-section">
+                    <label for="vision">Brand Vision</label>
+
+                    <textarea
+                        id="vision"
+                        placeholder="What does your company hope to achieve?"
+                    ></textarea>
+                </div>
+
+
+                <div class="form-section">
+                    <label for="goals">Brand Goals</label>
+
+                    <textarea
+                        id="goals"
+                        placeholder="What are your main brand goals?"
+                    ></textarea>
+                </div>
+
+
+                <div class="form-section">
+
+                    <label>Logo</label>
+
+                    <div class="logo-upload">
+
+                        <input
+                            type="file"
+                            id="logo"
+                            accept="image/*"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <label>Color Palette</label>
+
+                    <div class="color-palette">
+
+                        <input
+                            type="text"
+                            class="color-input"
+                            placeholder="#000000"
+                        >
+
+                        <input
+                            type="text"
+                            class="color-input"
+                            placeholder="#FFFFFF"
+                        >
+
+                        <input
+                            type="text"
+                            class="color-input"
+                            placeholder="#FF69B4"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <label>Fonts</label>
+
+                    <input
+                        type="text"
+                        id="headingFont"
+                        placeholder="Heading font"
+                    >
+
+                    <input
+                        type="text"
+                        id="bodyFont"
+                        placeholder="Body font"
+                    >
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <label for="misc">Misc.</label>
+
+                    <textarea
+                        id="misc"
+                        placeholder="Anything else about your brand..."
+                    ></textarea>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT SIDE: AI CHATBOT -->
+
+            <section class="chat-container">
+
+                <div class="chat-header">
+
+                    <h2>Brand Assistant</h2>
+
+                    <p>
+                        here to help you build your brand identity!
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="chatMessages"
+                    class="chat-messages"
+                >
+
+                    <div class="message ai-message">
+
+                        Hii! It's time to build out your brand.
+
+                        <br><br>
+
+                        First, tell me your <strong>company name</strong>
+                        and a little bit about what your company does.
+
+                    </div>
+
+                </div>
+
+
+                <form id="chatForm" class="chat-input">
+
+                    <input
+                        type="text"
+                        id="chatInput"
+                        placeholder="Tell me about your company..."
+                        autocomplete="off"
+                    >
+
+                    <button type="submit">
+                        Send
+                    </button>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script src="branding.js"></script>
+
+</body>
+
+</html>

@@ -4,6 +4,25 @@ const chatInput = document.getElementById("chatInput");
 
 const chatMessages = document.getElementById("chatMessages");
 
+const typingText = document.getElementById("typing-text");
+
+const typingMessage = "helping you organize and build out your business's identity.";
+
+let typingIndex = 0;
+
+function typeSubtitle() {
+    if (!typingText) {
+        return;
+    }
+
+    if (typingIndex < typingMessage.length) {
+        typingText.textContent += typingMessage.charAt(typingIndex);
+        typingIndex += 1;
+        setTimeout(typeSubtitle, 55);
+    }
+}
+
+typeSubtitle();
 
 chatForm.addEventListener("submit", async function (event) {
 

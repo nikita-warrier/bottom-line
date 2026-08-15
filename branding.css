@@ -14,9 +14,35 @@ body {
 }
 
 .branding-page h1 {
-    margin: 0 0 35px;
+    margin: 0 0 8px;
     font-size: 36px;
     color: #000000;
+}
+
+.branding-subtitle {
+    margin: 0 0 35px;
+    min-height: 28px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #0a2463;
+    font-weight: 500;
+}
+
+.typing-cursor {
+    display: inline-block;
+    color: #d8315b;
+    font-weight: 700;
+    animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+
+    50.01%, 100% {
+        opacity: 0;
+    }
 }
 
 .branding-layout {

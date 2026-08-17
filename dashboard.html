@@ -42,23 +42,46 @@
 
         <div class="dashboard-grid">
             <div class="dashboard-preview-boxes branding-card">
-                <h3>BRANDING</h3>
+                <h3>Branding</h3>
                 <div class="container">
                     <label class="branding-avatar " for="branding-image-input">
                         <span class="branding-avatar__image" id="branding-avatar-image"></span>
                         <span class="branding-avatar__label">Click to add image</span>
                     </label>
                     <input type="file" id="branding-image-input" accept="image/*" hidden>
-                    
+                </div>
+            </div>
+
+            <div class="dashboard-preview-boxes influencer-card">
+                <div class="influencer-header">
+                    <h3>Social Media</h3>
+                    <button type="button" class="add-platform-btn" id="add-platform-btn">Add more</button>
+                </div>
+                <div id="platform-grid" class="platform-grid" aria-label="Social media platforms"></div>
+            </div>
+
+            <div class="dashboard-preview-boxes checklist-card">
+                <div class="checklist-header">
+                    <h3 >Checklist</h3>
+                    <span id="checklist-count" class="checklist-badge">0 items</span>
                 </div>
 
+                <form id="checklist-form" class="checklist-form">
+                    <input type="text" id="checklist-input" maxlength="120" required>
+                    <button type="submit">Add item</button>
+                </form>
 
+                <div class="checklist-status-legend" aria-label="Checklist status legend">
+                    <span class="legend-pill todo">Need to do</span>
+                    <span class="legend-pill in-progress">In progress</span>
+                    <span class="legend-pill completed">Completed</span>
+                </div>
+
+                <ul id="checklist-list" class="checklist-list" aria-label="Checklist items"></ul>
+            </div>
+
+            <div class="dashboard-preview-boxes">__________</div>
         </div>
-        <div class="dashboard-preview-boxes">INFLUENCERS
-            <div> Influencer List </div>
-        </div>
-        <div class="dashboard-preview-boxes">_________</div>
-        <div class="dashboard-preview-boxes">__________</div>
     </div>
 
     <script src="dashboard.js"></script>

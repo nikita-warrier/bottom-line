@@ -1,42 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketing</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Marketing | Bottom Line</title>
+
+    <!-- Main website styles -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Marketing-specific styles -->
+    <link rel="stylesheet" href="marketing.css">
 </head>
+
 
 <body>
 
-    <h1>Marketing</h1>
+    <main class="marketing-page">
 
-    <div class="container">
+        <!-- =========================================
+             page title
+        ========================================== -->
 
-        <!-- platform tracker -->
-        <div class="platform-tracker">
+        <h1>Marketing</h1>
 
-            <h2>Platform Tracker</h2>
 
-            <button id="add-platform">+ Add Platform</button>
+        <!-- =========================================
+             marketing overview
+        ========================================== -->
 
-            <!-- platform cards added here -->
-            <div id="platform-list"></div>
+        <section class="marketing-overview">
 
-        </div>
+            <div class="marketing-stat">
 
-        <!-- influencer tracker -->
-        <div class="influencer-tracker">
+                <div class="marketing-stat-label">
+                    Active Platforms
+                </div>
 
-            <h2>Influencer Tracker</h2>
-            <button id="add-influencer">+ Add Influencer</button>
-            <div id="influencer-list"></div>
+                <div
+                    class="marketing-stat-number"
+                    id="platform-count"
+                >
+                    0
+                </div>
 
-        </div>
+            </div>
 
-    </div>
+
+            <div class="marketing-stat">
+
+                <div class="marketing-stat-label">
+                    Active Tasks
+                </div>
+
+                <div
+                    class="marketing-stat-number"
+                    id="task-count"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="marketing-stat">
+
+                <div class="marketing-stat-label">
+                    Influencers
+                </div>
+
+                <div
+                    class="marketing-stat-number"
+                    id="influencer-count"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="marketing-stat">
+
+                <div class="marketing-stat-label">
+                    Posts This Week
+                </div>
+
+                <div
+                    class="marketing-stat-number marketing-stat-accent"
+                    id="post-count"
+                >
+                    0
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             trackers
+        ========================================== -->
+
+        <section class="marketing-trackers">
+
+
+            <!-- =====================================
+                 platform tracker
+            ====================================== -->
+
+            <div class="platform-tracker">
+
+                <h2>Platform Tracker</h2>
+
+                <p class="tracker-description">
+                    Keep track of your social media platforms,
+                    followers, and marketing tasks.
+                </p>
+
+
+                <button
+                    id="add-platform"
+                    class="add-button primary-button"
+                    type="button"
+                >
+                    + Add Platform
+                </button>
+
+
+                <!-- Platforms will be added here by JavaScript -->
+
+                <div id="platform-list">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 influencer tracker
+            ====================================== -->
+
+            <div class="influencer-tracker">
+
+                <h2>Influencer Tracker</h2>
+
+                <p class="tracker-description">
+                    Track influencer partnerships,
+                    platforms, and campaign status.
+                </p>
+
+
+                <button
+                    id="add-influencer"
+                    class="add-button primary-button"
+                    type="button"
+                >
+                    + Add Influencer
+                </button>
+
+
+                <!-- Influencers will be added here by JavaScript -->
+
+                <div id="influencer-list">
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- Marketing JavaScript -->
 
     <script src="marketing.js"></script>
+
 </body>
+
 </html>

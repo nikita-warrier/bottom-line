@@ -1,0 +1,455 @@
+/* =========================================
+   marketing page
+========================================= */
+
+.marketing-page {
+    padding: 30px 45px 50px;
+    background: #ffffff;
+}
+
+
+/* =========================================
+   title
+========================================= */
+
+.marketing-page h1 {
+    margin: 0 0 35px;
+    text-align: center;
+    color: #000000;
+}
+
+
+/* =========================================
+   marketing overview
+========================================= */
+
+.marketing-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.marketing-stat {
+    background: #ffffff;
+    border: 2px solid #3e92cc;
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+
+.marketing-stat-label {
+    font-size: 13px;
+    color: #0a2463;
+    margin-bottom: 5px;
+}
+
+.marketing-stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0a2463;
+}
+
+.marketing-stat-accent {
+    color: #d8315b;
+}
+
+
+/* =========================================
+   tracker layout
+========================================= */
+
+.marketing-trackers {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+
+/* both trackers look the same */
+
+.platform-tracker,
+.influencer-tracker {
+    flex: 1;
+    background: #ffffff;
+    border: 3px solid #3e92cc;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+
+/* =========================================
+   tracker headers
+========================================= */
+
+.platform-tracker h2,
+.influencer-tracker h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    text-align: center;
+    color: #000000;
+}
+
+.tracker-description {
+    text-align: center;
+    color: #555555;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   buttons
+========================================= */
+
+.marketing-page button {
+    font-family: inherit;
+}
+
+.add-button {
+    display: block;
+    margin: 0 auto 20px;
+
+    padding: 9px 16px;
+
+    border: 2px solid #0a2463;
+    border-radius: 7px;
+
+    background: #ffffff;
+    color: #0a2463;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.add-button:hover {
+    background: #0a2463;
+    color: #ffffff;
+}
+
+
+/* pink primary action */
+
+.primary-button {
+    background: #d8315b;
+    color: #ffffff;
+    border: 2px solid #d8315b;
+}
+
+.primary-button:hover {
+    background: #0a2463;
+    border-color: #0a2463;
+}
+
+
+/* =========================================
+   platform card
+========================================= */
+
+.platform-card {
+    position: relative;
+
+    border: 2px solid #0a2463;
+
+    padding: 18px;
+
+    margin-top: 20px;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+}
+
+
+/* small accent line at top */
+
+.platform-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 18px;
+    right: 18px;
+
+    height: 4px;
+
+    background: #3e92cc;
+
+    border-radius: 0 0 5px 5px;
+}
+
+
+/* =========================================
+   platform header
+========================================= */
+
+.platform-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+    padding-top: 5px;
+}
+
+.platform-header input {
+    flex: 1;
+}
+
+
+/* =========================================
+   tasks
+========================================= */
+
+.tasks {
+    margin-bottom: 15px;
+}
+
+
+/* individual task */
+
+.task {
+  position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 25px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+
+/* status dot */
+
+.task::before {
+  content: "";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--status-color);
+}
+
+
+/* status colors */
+
+.task.status-not-started::before {
+    background: #ffb8ca;
+}
+
+.task.status-in-progress::before {
+    background: #fff1b8;
+}
+
+.task.status-ready::before {
+    background: #c1fdd3;
+}
+
+.task.status-complete::before {
+    background: #c1fdd3;
+}
+
+
+/* inputs inside tasks */
+
+.task input,
+.task select {
+    width: 48%;
+
+    padding: 8px 10px;
+
+    border: 1px solid #cfcfcf;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+}
+
+
+/* focus */
+
+.task input:focus,
+.task select:focus {
+    outline: none;
+
+    border-color: #d8315b;
+}
+
+
+/* =========================================
+   ADD TASK BUTTON
+========================================= */
+
+.add-task-button {
+    display: block;
+
+    margin: 15px auto 0;
+
+    padding: 8px 14px;
+
+    border: 1px solid #0a2463;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #0a2463;
+
+    cursor: pointer;
+}
+
+.add-task-button:hover {
+    background: #3e92cc;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   INFLUENCER TRACKER
+========================================= */
+
+#influencer-list {
+    margin-top: 20px;
+}
+
+
+/* Influencer row */
+.influencer-row {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 25px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.influencer-row::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--status-color);
+}
+
+.influencer-row input,
+.influencer-row select {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 8px 10px;
+
+    border: 1px solid #cfcfcf;
+
+    border-radius: 6px;
+}
+
+
+.influencer-row .influencer-name {
+    min-width: 180px;
+}
+
+
+.influencer-row .influencer-platform,
+.influencer-row .influencer-status {
+    max-width: 200px;
+}
+
+
+/* delete button */
+
+.influencer-row .remove-influencer {
+    flex: 0 0 auto;
+
+    padding: 8px 12px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #0a2463;
+
+    color: #ffffff;
+
+    cursor: pointer;
+}
+
+.influencer-row .remove-influencer:hover {
+    background: #d8315b;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .marketing-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .marketing-trackers {
+        flex-direction: column;
+    }
+
+    .platform-tracker,
+    .influencer-tracker {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .marketing-page {
+        padding: 25px 20px;
+    }
+
+    .marketing-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .platform-header {
+        flex-direction: column;
+    }
+
+    .task {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .task input,
+    .task select {
+        width: 100%;
+    }
+
+    .influencer-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .influencer-row .influencer-name,
+    .influencer-row .influencer-platform,
+    .influencer-row .influencer-status {
+        min-width: 0;
+        max-width: none;
+        width: 100%;
+    }
+
+}

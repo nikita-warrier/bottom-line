@@ -1,5 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
 
+:root {
+  --primary: #3e92cc;
+  --secondary: #0a2463;
+  --accent: #d8315b;
+}
+
+.layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1000px;
+}
+
+h1 {
+  color: var(--secondary);
+  font-family: "Teachers", sans-serif;
+}
+
 body {
     font-family: "Teachers", sans-serif;
     margin: 40px;
@@ -45,9 +64,119 @@ body {
     transition: background-color 0.2s ease;
 }
 
+#task-list {
+  flex: 1;
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-bottom: 2px solid var(--secondary);
+  position: relative;
+}
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.task-name {
+  font-weight: bold;
+  color: var(--secondary);
+}
+
+.task-name.done {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.task-date {
+  font-size: 0.85em;
+  color: #666;
+}
+
+.task-description {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.delete-btn {
+  border: none;
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+.priority-high { border-bottom-color: #ffb8ca; }
+.priority-medium { border-bottom-color: #fff1b8; }
+.priority-low { border-bottom-color: #c1fdd3; }
+
 .task input,
 .task select {
     width: 48%;
+}
+
+.task-box {
+  flex: 1;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.task-box p {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--secondary);
+  margin-bottom: 20px;
+}
+
+.task-box label {
+  display: block;
+  font-weight: 600;
+  color: var(--secondary);
+  margin-bottom: 4px;
+  margin-top: 14px;
+  text-align: left;
+}
+
+.task-box input,
+.task-box select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.task-box button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.task-box button:hover {
+  background-color: var(--secondary);
 }
 
 .influencer-tracker button {
@@ -97,3 +226,42 @@ body {
     opacity: 0.9;
 }
 
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filters label {
+  font-weight: 600;
+  color: var(--secondary);
+  font-size: 0.95em;
+}
+
+.filters select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  border: 2px solid var(--primary);
+  color: var(--secondary);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9em;
+  padding: 6px 28px 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%230a2463'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.filters select:hover {
+  background-color: #f0f7fc;
+}
+
+.filters select:focus {
+  outline: none;
+  border-color: var(--secondary);
+}

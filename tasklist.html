@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasklist</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <h1>Tasklist</h1>
+
+    <div class="filters">
+        <label for="filter-priority">Priority:</label>
+        <select id="filter-priority">
+            <option value="all">All</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        </select>
+
+        <label for="sort-date">Sort by date:</label>
+        <select id="sort-date">
+            <option value="none">None</option>
+            <option value="asc">Earliest first</option>
+            <option value="desc">Latest first</option>
+        </select>
+    </div>
+
+    <div class="layout">
+        <div class="task-box">
+            <p>Create a Task!</p>
+            <form id="task-form">
+                <label for="task">Task</label>
+                <input id="task" placeholder="Enter task" type="text"><br><br>
+                <label for="description">Description</label>
+                <input id="description" placeholder="Enter description" type="text"><br><br>
+                <label for="due-date">Due Date</label>
+                <input id="due-date" type="date"><br><br>
+                <label for="priority">Priority</label>
+                <select id="priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select><br><br>
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+        <div id="task-list"></div>
+    </div>
+
+    <script src="tasklist.js"></script>
+</body>
+</html>

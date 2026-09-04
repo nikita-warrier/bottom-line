@@ -6,9 +6,30 @@ const timelineToggle = document.getElementById('timeline-toggle');
 const brandingInput = document.getElementById('branding-image-input');
 const brandingAvatar = document.getElementById('branding-avatar-image');
 const brandingAvatarLabel = document.querySelector('.branding-avatar__label');
+const checklistForm = document.getElementById('checklist-form');
+const checklistInput = document.getElementById('checklist-input');
+const checklistList = document.getElementById('checklist-list');
+const checklistCount = document.getElementById('checklist-count');
+const addPlatformButton = document.getElementById('add-platform-btn');
+const platformGrid = document.getElementById('platform-grid');
 const events = [];
 let isExpanded = false;
 const MAX_VISIBLE_ITEMS = 6;
+
+const checklistStatusLabels = {
+    todo: 'Need to do',
+    'in-progress': 'In progress',
+    completed: 'Completed'
+};
+
+let checklistItems = [];
+let draggedItemId = null;
+
+const socialPlatforms = [
+    { name: 'Instagram', handle: '', posts: '', followers: '' },
+    { name: 'TikTok', handle: '', posts: '', followers: '' },
+    { name: 'Facebook', handle: '', posts: '', followers: '' }
+];
 
 function parseDate(value) {
     const [year, month, day] = value.split('-').map(Number);
@@ -35,6 +56,64 @@ function getSpacingPx(currentDate, previousDate) {
     return Math.max(18, Math.min(140, dayDifference * 1.8));
 }
 
+function escapeHtml(text) {
+    return String(text).replace(/[&<>"']/g, function (character) {
+        const htmlEntities = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
+        return htmlEntities[character] || character;
+    });
+}
+
+function formatPlatformHandle(value) {
+    const cleanedValue = String(value || '').trim();
+    if (!cleanedValue) {
+        return '—';
+    }
+
+    return cleanedValue.startsWith('@') ? cleanedValue : `@${cleanedValue}`;
+}
+
+function renderPlatformCards() {
+    platformGrid.innerHTML = '';
+
+    socialPlatforms.forEach((platform) => {
+        const card = document.createElement('article');
+        card.className = 'platform-card';
+        card.dataset.platform = platform.name.toLowerCase();
+
+        card.innerHTML = `
+            <div class="platform-card-header">
+                <h4 class="platform-name">${escapeHtml(platform.name)}</h4>
+            </div>
+
+            <div class="platform-info">
+                <div class="platform-detail">
+                    <span class="platform-detail-label">Handle</span>
+                    <span class="platform-detail-value">${escapeHtml(formatPlatformHandle(platform.handle))}</span>
+                </div>
+
+                <div class="platform-stats">
+                    <div class="platform-stat">
+                        <span class="platform-stat-label">Followers</span>
+                        <span class="platform-stat-value">${escapeHtml(platform.followers || '—')}</span>
+                    </div>
+                    <div class="platform-stat">
+                        <span class="platform-stat-label">Posts</span>
+                        <span class="platform-stat-value">${escapeHtml(platform.posts || '—')}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        platformGrid.appendChild(card);
+    });
+}
+
 function renderTimeline() {
     const sortedEvents = [...events].sort((first, second) => first.timestamp - second.timestamp);
 
@@ -52,6 +131,87 @@ function renderTimeline() {
     timelineToggle.hidden = !shouldCollapse;
     timelineToggle.textContent = isExpanded ? 'See less' : 'See more';
     timelineList.classList.toggle('is-expanded', isExpanded && shouldCollapse);
+}
+
+function renderChecklist() {
+    checklistList.innerHTML = '';
+
+    if (!checklistItems.length) {
+        const emptyState = document.createElement('li');
+        emptyState.className = 'checklist-empty';
+        emptyState.textContent = 'No tasks yet. Add your first checklist item.';
+        checklistList.appendChild(emptyState);
+        checklistCount.textContent = '0 items';
+        return;
+    }
+
+    checklistItems.forEach((item) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'checklist-item';
+        listItem.dataset.id = String(item.id);
+        listItem.dataset.status = item.status;
+        listItem.draggable = true;
+
+        const statusOptions = Object.entries(checklistStatusLabels)
+            .map(([value, label]) => `<option value="${value}" ${value === item.status ? 'selected' : ''}>${label}</option>`)
+            .join('');
+
+        listItem.innerHTML = `
+            <div class="checklist-main">
+                <button type="button" class="checklist-check" aria-label="Toggle checklist item ${escapeHtml(item.text)}" title="Cycle status">${item.status === 'completed' ? '✓' : '○'}</button>
+                <span class="checklist-text">${escapeHtml(item.text)}</span>
+            </div>
+            <div class="checklist-actions">
+                <select class="checklist-status" aria-label="Change status for ${escapeHtml(item.text)}">
+                    ${statusOptions}
+                </select>
+                <button type="button" class="checklist-delete" aria-label="Delete checklist item ${escapeHtml(item.text)}">Delete</button>
+            </div>
+        `;
+
+        checklistList.appendChild(listItem);
+    });
+
+    checklistCount.textContent = `${checklistItems.length} item${checklistItems.length === 1 ? '' : 's'}`;
+}
+
+function updateChecklistItemStatus(itemId, nextStatus) {
+    checklistItems = checklistItems.map((item) => {
+        if (item.id === itemId) {
+            return { ...item, status: nextStatus };
+        }
+        return item;
+    });
+
+    renderChecklist();
+}
+
+function cycleChecklistStatus(itemId) {
+    const currentItem = checklistItems.find((item) => item.id === itemId);
+    if (!currentItem) return;
+
+    const statusOrder = ['todo', 'in-progress', 'completed'];
+    const currentIndex = statusOrder.indexOf(currentItem.status);
+    const nextStatus = statusOrder[(currentIndex + 1) % statusOrder.length];
+    updateChecklistItemStatus(itemId, nextStatus);
+}
+
+function removeChecklistItem(itemId) {
+    checklistItems = checklistItems.filter((item) => item.id !== itemId);
+    renderChecklist();
+}
+
+function reorderChecklistItems(fromId, toId) {
+    const fromIndex = checklistItems.findIndex((item) => item.id === fromId);
+    const toIndex = checklistItems.findIndex((item) => item.id === toId);
+
+    if (fromIndex === -1 || toIndex === -1 || fromIndex === toIndex) {
+        return;
+    }
+
+    const [movedItem] = checklistItems.splice(fromIndex, 1);
+    checklistItems.splice(toIndex, 0, movedItem);
+    renderChecklist();
 }
 
 timelineToggle.addEventListener('click', function () {
@@ -74,6 +234,130 @@ brandingInput.addEventListener('change', function () {
     reader.readAsDataURL(file);
 });
 
+addPlatformButton.addEventListener('click', function () {
+    const platformName = window.prompt('Enter a social media platform name', 'YouTube');
+    if (!platformName) {
+        return;
+    }
+
+    const cleanedName = platformName.trim();
+    if (!cleanedName) {
+        return;
+    }
+
+    const exists = socialPlatforms.some((platform) => platform.name.toLowerCase() === cleanedName.toLowerCase());
+    if (exists) {
+        return;
+    }
+
+    socialPlatforms.push({
+        name: cleanedName,
+        handle: '',
+        posts: 0,
+        followers: '0',
+        following: 0
+    });
+
+    renderPlatformCards();
+});
+
+checklistForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const taskText = checklistInput.value.trim();
+    if (!taskText) {
+        return;
+    }
+
+    checklistItems.push({
+        id: Date.now(),
+        text: taskText,
+        status: 'todo'
+    });
+
+    checklistForm.reset();
+    checklistInput.focus();
+    renderChecklist();
+});
+
+checklistList.addEventListener('click', function (event) {
+    const deleteButton = event.target.closest('.checklist-delete');
+    if (deleteButton) {
+        const itemElement = deleteButton.closest('.checklist-item');
+        if (itemElement) {
+            removeChecklistItem(Number(itemElement.dataset.id));
+        }
+        return;
+    }
+
+    const toggleButton = event.target.closest('.checklist-check');
+    if (toggleButton) {
+        const itemElement = toggleButton.closest('.checklist-item');
+        if (itemElement) {
+            cycleChecklistStatus(Number(itemElement.dataset.id));
+        }
+    }
+});
+
+checklistList.addEventListener('change', function (event) {
+    const statusSelector = event.target.closest('.checklist-status');
+    if (!statusSelector) {
+        return;
+    }
+
+    const itemElement = statusSelector.closest('.checklist-item');
+    if (!itemElement) {
+        return;
+    }
+
+    updateChecklistItemStatus(Number(itemElement.dataset.id), statusSelector.value);
+});
+
+checklistList.addEventListener('dragstart', function (event) {
+    const itemElement = event.target.closest('.checklist-item');
+    if (!itemElement) {
+        return;
+    }
+
+    draggedItemId = Number(itemElement.dataset.id);
+    itemElement.classList.add('dragging');
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.setData('text/plain', String(draggedItemId));
+});
+
+checklistList.addEventListener('dragover', function (event) {
+    const itemElement = event.target.closest('.checklist-item');
+    if (!itemElement) {
+        return;
+    }
+
+    event.preventDefault();
+    checklistList.querySelectorAll('.checklist-item').forEach((node) => node.classList.remove('drop-target'));
+    itemElement.classList.add('drop-target');
+});
+
+checklistList.addEventListener('drop', function (event) {
+    const itemElement = event.target.closest('.checklist-item');
+    if (!itemElement || draggedItemId === null) {
+        return;
+    }
+
+    event.preventDefault();
+    const targetId = Number(itemElement.dataset.id);
+    reorderChecklistItems(draggedItemId, targetId);
+    draggedItemId = null;
+    checklistList.querySelectorAll('.checklist-item').forEach((node) => node.classList.remove('drop-target'));
+});
+
+checklistList.addEventListener('dragend', function (event) {
+    const itemElement = event.target.closest('.checklist-item');
+    if (itemElement) {
+        itemElement.classList.remove('dragging');
+    }
+    checklistList.querySelectorAll('.checklist-item').forEach((node) => node.classList.remove('drop-target'));
+    draggedItemId = null;
+});
+
 form.addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -94,3 +378,7 @@ form.addEventListener('submit', function (event) {
     form.reset();
     dateInput.focus();
 });
+
+renderPlatformCards();
+renderTimeline();
+renderChecklist();
